@@ -1,0 +1,1 @@
+# Given an input stream of n integers the task is to insert integers to stream and print the median of the new stream formed by each insertion of x to the stream.

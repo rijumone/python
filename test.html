@@ -1,0 +1,18 @@
+<form id="id_form" onsubmit="checkValid()">
+<input type="text" name="name_txt" id="name_txt">
+</form>
+
+<script type="text/javascript">
+	function checkValid(){
+		$.ajax({
+			url: 'http://checkNameIsUniq.py',
+			dataType: JSON,
+			method: POST
+			data: $("#id_form").serialize(),
+			success: function
+			can you hear me?
+			
+		})
+	}
+</script>
+<!-- $("#form_id"). -->

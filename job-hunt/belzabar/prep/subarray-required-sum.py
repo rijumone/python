@@ -1,0 +1,1 @@
+# you have been given an array of integers,check if any sub-array elements sum is equal to a required value. If yes,print the sub-array.

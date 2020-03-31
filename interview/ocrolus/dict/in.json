@@ -1,0 +1,66 @@
+{
+  "classes": [
+    {
+      "id": "1",
+      "name": "I",
+      "students": [
+        {
+          "id": "1",
+          "name": "Riju",
+          "age": 11,
+          "gender": "male"
+        },
+        {
+          "id": "2",
+          "name": "Anurag",
+          "age": 12,
+          "gender": "male"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "II",
+      "students": [
+        {
+          "id": "3",
+          "name": "foo",
+          "age": 13,
+          "gender": "female"
+        },
+        {
+          "id": "4",
+          "name": "bar",
+          "age": 14,
+          "gender": "male"
+        },
+        {
+          "id": "5",
+          "name": "riju",
+          "age": 14,
+          "gender": "male"
+        }
+      ]
+    }
+  ],
+  "attendance": [
+    {
+      "date": "2019-10-24",
+      "records": [
+        {
+          "student_id": 1,
+          "is_present": true
+        }
+      ]
+    },
+    {
+      "date": "2019-10-25",
+      "records": [
+        {
+          "student_id": 2,
+          "is_present": false
+        }
+      ]
+    }
+  ]
+}

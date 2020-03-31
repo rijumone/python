@@ -1,0 +1,1 @@
+# Given an array of whole numbers. You have to push all the zeroes towards left and positions of positive numbers should not change.(in constant memory and single traversal of array)  

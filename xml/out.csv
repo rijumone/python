@@ -1,0 +1,45 @@
+caption,name,formula
+Donut5,[Calculation_399976008987545603],0
+Donut6,[Calculation_399976008987594756],0
+Donut3,[Calculation_399976008978243584],0
+Donut4,[Calculation_399976008978276353],0
+Factor,[Calculation_112027040904318977],2.5
+Top Attrited Emp Para,[Calculation_490048001936826368],[Calculation_490048001939038210] < [Parameters].[Job Title Parameter]/100
+Dis Emp ID,[Calculation_490048001938825217],COUNTD([EmployeeID])
+running total Emp,[Calculation_490048001939038210],RUNNING_SUM([Calculation_490048001938825217])/TOTAL([Calculation_490048001938825217])
+Donut7,[Calculation_857372779197558785],0
+Donut8,[Calculation_857372779197624322],0
+Married,[Calculation_857372779198177284],"[Calculation_112027040904318977]*(COUNTD(if( [Marital Status]=""Married"") THEN [EmployeeID] 
+        elseif ([Marital Status]=""Unmarried"") THEN [EmployeeID]
+end))"
+Donut9,[Calculation_152840912804864000],0
+Donut10,[Calculation_152840912804896769],0
+Vol Resig Emp Para,[Calculation_399976009037258763],"CASE [Parameters].[Termreason Desc Parameter]
+    WHEN ""Voluntary - Resignaton"" Then COUNTD(if ([STATUS] = 'TERMINATED' and [termtype_desc] = 'Voluntary' and [termreason_desc] = 'Resignaton') then [EmployeeID]  END)
+    WHEN ""Voluntary - Retirement"" Then COUNTD(if ([STATUS] = 'TERMINATED' and [termtype_desc] = 'Voluntary' and [termreason_desc] = 'Retirement') then [EmployeeID]  END)
+    WHEN ""Involuntary - Layoff"" Then COUNTD(if ([STATUS] = 'TERMINATED' and [termtype_desc] = 'Involuntary' and [termreason_desc] = 'Layoff') then [EmployeeID]  END)
+
+END"
+Status Year 2 yr added,[Calculation_672443786791706624],[STATUS_YEAR] + 2
+Not Attrited,[Calculation_672443786822250497],1- [Calculation_793759501053181968]
+Age1,[Calculation_793759500994473984],STR([age])
+Age Para,[Calculation_793759500995399681],Case [Parameters].[Age1 Parameter] when 'Less than 30 yr' then COUNTD([EmployeeID]) END
+Length Of Service1,[Calculation_793759500995854338],STR([length_of_service])
+Dis Employee ID,[Calculation_793759500996075523],COUNTD([EmployeeID])
+Term emp,[Calculation_793759501006077956],COUNTD(case [STATUS] when 'TERMINATED' then ([EmployeeID]) ELSE NULL END)
+Donut1,[Calculation_793759501008011271],0
+Donut2,[Calculation_793759501008052232],0
+Attrition,[Calculation_793759501053181968],[Calculation_857372779231047690]*([Term emp (copy)]/[Calculation_793759500996075523])
+Age Groups,[Calculation_793759501055234066],"If [age] <= 24 then '<25 yr' 
+    ELSEIF ([age] > 24 and [age] <= 30) then '25-30 yr'
+    ELSEIF ([age] > 30 and [age] <= 36) then '31-36 yr'
+    ELSEIF ([age] > 36 and [age] <= 42) then '37-42 yr'
+    ELSEIF ([age] > 42 and [age] <= 48) then '43-48 yr'
+    ELSEIF ([age] > 48 and [age] <= 54) then '49-54 yr'
+    ELSEIF ([age] > 54 and [age] <= 60) then '55-60 yr'
+    ELSE '>60 yr'
+END"
+Factor1,[Calculation_819373658016755717],8
+Factor2,[Calculation_819373658041274398],4
+Year,[Calculation_819373658045284387],[Calculation_672443786791706624]
+Factor,[Calculation_857372779231047690],2.5
