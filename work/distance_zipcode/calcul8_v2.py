@@ -2,7 +2,7 @@
 import requests
 
 
-api_key = "AIzaSyDjjm_CzfChp_BXFNVyzExYBtcYoPRA4UQ"
+api_key = ""
 
 with open("clean_values.csv") as f:
 	for i, line in enumerate(f):
