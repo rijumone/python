@@ -1,10 +1,15 @@
 import time
 import subprocess
+from loguru import logger
 
-print('Starting to capture in 20 seconds')
+logger.add('astro.log')
+
+logger.info('Starting to capture in 20 seconds')
 time.sleep(20)
+ctr = 0
 while True:
-	print('Capturing...')
+	ctr += 1
+	logger.info('Capturing {}...'.format(ctr))
 	
 	cmd = [
 		'adb',
@@ -14,10 +19,10 @@ while True:
 		'543',
 		'1832',
 		]
-	print(' '.join(cmd))
+	logger.info(' '.join(cmd))
 	subprocess.call(cmd)
 
-	print('Sleeping for 31 seconds...')
+	logger.info('Sleeping for 31 seconds...')
 	time.sleep(31)
 
 
@@ -29,10 +34,10 @@ while True:
 		'957',
 		'1861',
 		]
-	print(' '.join(cmd))
+	logger.info(' '.join(cmd))
 	subprocess.call(cmd)
 
-	print('Sleeping for 0.5 seconds...')
+	logger.info('Sleeping for 0.5 seconds...')
 	time.sleep(0.5)
 
 	cmd = [
@@ -42,8 +47,8 @@ while True:
 		'keyevent',
 		'KEYCODE_BACK',
 		]
-	print(' '.join(cmd))
+	logger.info(' '.join(cmd))
 	subprocess.call(cmd)
 
-	print('Sleeping for 0.5 seconds...')
+	logger.info('Sleeping for 0.5 seconds...')
 	time.sleep(0.5)
