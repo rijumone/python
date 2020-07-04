@@ -121,7 +121,11 @@ def main(data_file_path):
         with psycopg2.connect(CONN_STRING) as conn:
             with conn.cursor(cursor_factory=psycopg2.extras.DictCursor) as cursor:
                 logger.debug(table_load_sql)
-                cursor.execute(table_load_sql)
+                try:
+                    cursor.execute(table_load_sql)
+                except Exception as e:
+                    logger.error(str(e))
+                    continue
     
 
 if __name__ == '__main__':
