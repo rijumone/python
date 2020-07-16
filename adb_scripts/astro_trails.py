@@ -22,8 +22,13 @@ while True:
 	logger.info(' '.join(cmd))
 	subprocess.call(cmd)
 
-	logger.info('Sleeping for 31 seconds...')
-	time.sleep(31)
+	for attempt in range(11):
+		logger.info('Sleeping for 3 seconds...')
+		time.sleep(3)
+		logger.info('retrying...')
+		logger.info(' '.join(cmd))
+		subprocess.call(cmd)
+
 
 
 	cmd = [
