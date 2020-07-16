@@ -4,7 +4,7 @@ from loguru import logger
 
 logger.add('astro.log')
 
-logger.info('Starting to capture in 20 seconds')
+logger.info('Starting to capture in 10 seconds')
 time.sleep(20)
 ctr = 0
 while True:
