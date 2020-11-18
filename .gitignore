@@ -128,3 +128,5 @@ dmypy.json
 
 # Local wsgi file
 wsgi.py
+
+adb_scripts/*.log
