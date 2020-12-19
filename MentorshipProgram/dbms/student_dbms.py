@@ -38,7 +38,7 @@ def main_menu():
             elif selection == '1':
                 viewstudent()
             elif selection == '2':
-                clearnewstudent()
+                create_new_student()
             elif selection == '3':
                 editstudent()
             else:
@@ -50,15 +50,16 @@ def main_menu():
 
 
 # function to clear a new student
-def clearnewstudent():
+def create_new_student():
     print('Enter student details:')
-    name = input('Name: ')
-    age = input('Age: ')
-    course = input('Course/Class: ')
-    ecr = input('Extra Curricular Activity: ')
-    con = input('Contact number: ')
-    id = 'del'+'al'+str(con[0:3])
-    newdf = pandas.DataFrame([[id, name, age, course, ecr, con]], columns=[
+    student = Student(None, None, None, None, None)
+    student.name = input('Name: ')
+    student.age = input('Age: ')
+    student.course = input('Course/Class: ')
+    student.ecr = input('Extra Curricular Activity: ')
+    student.con = input('Contact number: ')
+    id = 'del'+'al'+str(student.con[0:3])
+    newdf = pandas.DataFrame([[id, student.name, student.age, student.course, student.ecr, student.con]], columns=[
                              'id', 'name', 'age', 'course', 'ecr', 'contact'])
     df = pandas.read_csv('studentdata.csv')
     df = df.append(newdf, ignore_index=True)
