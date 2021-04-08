@@ -13,15 +13,13 @@ def printParenthesis(n):
     return sorted(return_lst)
 
 
-def generate_parantheses(_lst, position, n, open, close, return_lst):
+def generate_parantheses(_lst, position, n,
+                         open, close, return_lst):
 
     if(close == n):
         tmp_str = ''
         for i in _lst:
             tmp_str += i
-            # print(i, end="")
-
-        # print()
         return_lst.append(tmp_str)
         return
 
