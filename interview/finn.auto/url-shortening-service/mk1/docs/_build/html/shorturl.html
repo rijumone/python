@@ -1,0 +1,358 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
+    <title>shorturl package &#8212; ShortenURL  documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="setup module" href="setup.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="shorturl-package">
+<h1>shorturl package<a class="headerlink" href="#shorturl-package" title="Permalink to this headline">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="module-shorturl.db">
+<span id="shorturl-db-module"></span><h2>shorturl.db module<a class="headerlink" href="#module-shorturl.db" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="shorturl.db.close_db">
+<code class="sig-prename descclassname"><span class="pre">shorturl.db.</span></code><code class="sig-name descname"><span class="pre">close_db</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">e</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shorturl.db.close_db" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="shorturl.db.get_db">
+<code class="sig-prename descclassname"><span class="pre">shorturl.db.</span></code><code class="sig-name descname"><span class="pre">get_db</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#shorturl.db.get_db" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="shorturl.db.get_db_session">
+<code class="sig-prename descclassname"><span class="pre">shorturl.db.</span></code><code class="sig-name descname"><span class="pre">get_db_session</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#shorturl.db.get_db_session" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="shorturl.db.init_app">
+<code class="sig-prename descclassname"><span class="pre">shorturl.db.</span></code><code class="sig-name descname"><span class="pre">init_app</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shorturl.db.init_app" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="shorturl.db.init_db">
+<code class="sig-prename descclassname"><span class="pre">shorturl.db.</span></code><code class="sig-name descname"><span class="pre">init_db</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#shorturl.db.init_db" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-shorturl.exceptions">
+<span id="shorturl-exceptions-module"></span><h2>shorturl.exceptions module<a class="headerlink" href="#module-shorturl.exceptions" title="Permalink to this headline">¶</a></h2>
+<dl class="py exception">
+<dt id="shorturl.exceptions.ShortURL404">
+<em class="property"><span class="pre">exception</span> </em><code class="sig-prename descclassname"><span class="pre">shorturl.exceptions.</span></code><code class="sig-name descname"><span class="pre">ShortURL404</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shorturl.exceptions.ShortURL404" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+</dd></dl>
+
+</section>
+<section id="module-shorturl.models">
+<span id="shorturl-models-module"></span><h2>shorturl.models module<a class="headerlink" href="#module-shorturl.models" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="shorturl.models.URLsMap">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">shorturl.models.</span></code><code class="sig-name descname"><span class="pre">URLsMap</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shorturl.models.URLsMap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sqlalchemy.orm.decl_api.Base</span></code></p>
+<dl class="py attribute">
+<dt id="shorturl.models.URLsMap.created_at">
+<code class="sig-name descname"><span class="pre">created_at</span></code><a class="headerlink" href="#shorturl.models.URLsMap.created_at" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="shorturl.models.URLsMap.id">
+<code class="sig-name descname"><span class="pre">id</span></code><a class="headerlink" href="#shorturl.models.URLsMap.id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="shorturl.models.URLsMap.original_url">
+<code class="sig-name descname"><span class="pre">original_url</span></code><a class="headerlink" href="#shorturl.models.URLsMap.original_url" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="shorturl.models.URLsMap.short_url">
+<code class="sig-name descname"><span class="pre">short_url</span></code><a class="headerlink" href="#shorturl.models.URLsMap.short_url" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-shorturl.url_transform">
+<span id="shorturl-url-transform-module"></span><h2>shorturl.url_transform module<a class="headerlink" href="#module-shorturl.url_transform" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="shorturl.url_transform.FullURL">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">shorturl.url_transform.</span></code><code class="sig-name descname"><span class="pre">FullURL</span></code><a class="headerlink" href="#shorturl.url_transform.FullURL" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class to reverse generate the integer based on which
+the unique hash was generated using the short_url PyPI package
+(<a class="reference external" href="https://pypi.org/project/short_url/">https://pypi.org/project/short_url/</a>).</p>
+<dl class="py method">
+<dt id="shorturl.url_transform.FullURL.decode">
+<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">decode</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shorturl</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shorturl.url_transform.FullURL.decode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Static method to reverse generate the integer based
+on which the unique hash was generated.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>shorturl</strong> – Unique hash which was generated based on
+a unique integer</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Unique integer</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – if the shorturl passed was not generated using
+    the short_url package</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="shorturl.url_transform.ShortURL">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">shorturl.url_transform.</span></code><code class="sig-name descname"><span class="pre">ShortURL</span></code><a class="headerlink" href="#shorturl.url_transform.ShortURL" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class to generate a unique hash based on
+an unique integer using the short_url PyPI package
+(<a class="reference external" href="https://pypi.org/project/short_url/">https://pypi.org/project/short_url/</a>).</p>
+<dl class="py method">
+<dt id="shorturl.url_transform.ShortURL.encode">
+<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">encode</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">unique_key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shorturl.url_transform.ShortURL.encode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Static method to generate a unique hash based on
+an unique integer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>unique_key</strong> – Unique integer based upon which a
+unique hash will be generated</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Unique hash</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>TypeError</strong> – if the unique_key arg is not an integer</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="shorturl.url_transform.URLTransform">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">shorturl.url_transform.</span></code><code class="sig-name descname"><span class="pre">URLTransform</span></code><a class="headerlink" href="#shorturl.url_transform.URLTransform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class responsible for calling the encode and decode wrappers
+and inserting, updating and retrieving the short_urls and full_urls
+from the database.</p>
+<dl class="py method">
+<dt id="shorturl.url_transform.URLTransform.db_insert">
+<code class="sig-name descname"><span class="pre">db_insert</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#shorturl.url_transform.URLTransform.db_insert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Writes a new row to the database with the original_url.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Newly created row’s id.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="shorturl.url_transform.URLTransform.db_update">
+<code class="sig-name descname"><span class="pre">db_update</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#shorturl.url_transform.URLTransform.db_update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the database row with the generated hash.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="shorturl.url_transform.URLTransform.decode">
+<code class="sig-name descname"><span class="pre">decode</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">short_url_suffix</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shorturl.url_transform.URLTransform.decode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reverse generates the integer used to generate the hash using
+the decode wrapper, looks up the database for the original URL
+with that integer as primary key.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>short_url_suffix</strong> – The hash whose original URL needs to
+be looked up</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The original URL.</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#shorturl.exceptions.ShortURL404" title="shorturl.exceptions.ShortURL404"><strong>ShortURL404</strong></a> – if either the short_url_suffix passed was not
+    generated using the short_url package or if the integer generated
+    does not exist in the database.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="shorturl.url_transform.URLTransform.encode">
+<code class="sig-name descname"><span class="pre">encode</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">original_url</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shorturl.url_transform.URLTransform.encode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Writes a new row to the database with the original_url,
+then uses the newly created row’s id (which is unique)
+to generate a unique hash by calling the encode wrapper.
+Finally updates the database row with the generated hash.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>original_url</strong> – The original URL which needs to be encoded</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The generated unique hash which is to be used as the short
+URL suffix.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="shorturl.url_transform.URLTransform.original_url">
+<code class="sig-name descname"><span class="pre">original_url</span></code><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#shorturl.url_transform.URLTransform.original_url" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-shorturl.validations">
+<span id="shorturl-validations-module"></span><h2>shorturl.validations module<a class="headerlink" href="#module-shorturl.validations" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="shorturl.validations.DecodeInputSchema">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">shorturl.validations.</span></code><code class="sig-name descname"><span class="pre">DecodeInputSchema</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">many</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">load_only</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dump_only</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">partial</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">,</span> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unknown</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shorturl.validations.DecodeInputSchema" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">marshmallow.schema.Schema</span></code></p>
+<p>/decode - POST</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>short_url</strong> (<em>-</em>) – </p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt id="shorturl.validations.DecodeInputSchema.opts">
+<code class="sig-name descname"><span class="pre">opts</span></code><em class="property"><span class="pre">:</span> <span class="pre">SchemaOpts</span></em><em class="property"> <span class="pre">=</span> <span class="pre">&lt;marshmallow.schema.SchemaOpts</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#shorturl.validations.DecodeInputSchema.opts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="shorturl.validations.EncodeInputSchema">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">shorturl.validations.</span></code><code class="sig-name descname"><span class="pre">EncodeInputSchema</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">many</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">load_only</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dump_only</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">partial</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">,</span> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unknown</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shorturl.validations.EncodeInputSchema" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">marshmallow.schema.Schema</span></code></p>
+<p>/encode - POST</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>url</strong> (<em>-</em>) – </p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt id="shorturl.validations.EncodeInputSchema.opts">
+<code class="sig-name descname"><span class="pre">opts</span></code><em class="property"><span class="pre">:</span> <span class="pre">SchemaOpts</span></em><em class="property"> <span class="pre">=</span> <span class="pre">&lt;marshmallow.schema.SchemaOpts</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#shorturl.validations.EncodeInputSchema.opts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-shorturl">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-shorturl" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="shorturl.create_app">
+<code class="sig-prename descclassname"><span class="pre">shorturl.</span></code><code class="sig-name descname"><span class="pre">create_app</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shorturl.create_app" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">ShortenURL</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">mk1</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="setup.html">setup module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">shorturl package</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">mk1</a><ul>
+      <li>Previous: <a href="setup.html" title="previous chapter">setup module</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Rijumone Choudhuri.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.5.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/shorturl.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
