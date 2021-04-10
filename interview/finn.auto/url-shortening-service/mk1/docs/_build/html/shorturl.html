@@ -42,27 +42,51 @@
 <dl class="py function">
 <dt id="shorturl.db.close_db">
 <code class="sig-prename descclassname"><span class="pre">shorturl.db.</span></code><code class="sig-name descname"><span class="pre">close_db</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">e</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shorturl.db.close_db" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Closes the sqlite3.connect object and removes it from the
+g special object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>e</strong> – error object to pass errors if required</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt id="shorturl.db.get_db">
 <code class="sig-prename descclassname"><span class="pre">shorturl.db.</span></code><code class="sig-name descname"><span class="pre">get_db</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#shorturl.db.get_db" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Creates an SQLite connection, and stores it for
+later reuse.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>sqlite3.connect object</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt id="shorturl.db.get_db_session">
 <code class="sig-prename descclassname"><span class="pre">shorturl.db.</span></code><code class="sig-name descname"><span class="pre">get_db_session</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#shorturl.db.get_db_session" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Creates a SQLite db_session to be used with SQLAlchemy models</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>SQLAlchemy session</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt id="shorturl.db.init_app">
 <code class="sig-prename descclassname"><span class="pre">shorturl.db.</span></code><code class="sig-name descname"><span class="pre">init_app</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shorturl.db.init_app" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Calls <cite>close_db</cite> when cleaning up after returning the response.
+Adds the <cite>init-db</cite> command to be called with <cite>flask init-db</cite>.</p>
+</dd></dl>
 
 <dl class="py function">
 <dt id="shorturl.db.init_db">
 <code class="sig-prename descclassname"><span class="pre">shorturl.db.</span></code><code class="sig-name descname"><span class="pre">init_db</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#shorturl.db.init_db" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Initializes the SQLite database, clears exising data and
+migrates tables for first time use. Reads from <cite>schema.sql</cite>.</p>
+</dd></dl>
 
 </section>
 <section id="module-shorturl.exceptions">
@@ -71,6 +95,9 @@
 <dt id="shorturl.exceptions.ShortURL404">
 <em class="property"><span class="pre">exception</span> </em><code class="sig-prename descclassname"><span class="pre">shorturl.exceptions.</span></code><code class="sig-name descname"><span class="pre">ShortURL404</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shorturl.exceptions.ShortURL404" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Exception class for errors where the short_url
+either does not exist on the database or is not a
+valid hash</p>
 </dd></dl>
 
 </section>
@@ -80,6 +107,7 @@
 <dt id="shorturl.models.URLsMap">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">shorturl.models.</span></code><code class="sig-name descname"><span class="pre">URLsMap</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shorturl.models.URLsMap" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sqlalchemy.orm.decl_api.Base</span></code></p>
+<p>SQLAlchemy model for the <cite>urls_map</cite> table.</p>
 <dl class="py attribute">
 <dt id="shorturl.models.URLsMap.created_at">
 <code class="sig-name descname"><span class="pre">created_at</span></code><a class="headerlink" href="#shorturl.models.URLsMap.created_at" title="Permalink to this definition">¶</a></dt>
@@ -240,10 +268,10 @@ URL suffix.</p>
 <dt id="shorturl.validations.DecodeInputSchema">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">shorturl.validations.</span></code><code class="sig-name descname"><span class="pre">DecodeInputSchema</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">many</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">load_only</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dump_only</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">partial</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">,</span> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unknown</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shorturl.validations.DecodeInputSchema" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">marshmallow.schema.Schema</span></code></p>
-<p>/decode - POST</p>
+<p>Validation schema for the /decode route</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>short_url</strong> (<em>-</em>) – </p>
+<dd class="field-odd"><p><strong>short_url</strong> – The short URL whose original URL needs to be looked up</p>
 </dd>
 </dl>
 <dl class="py attribute">
@@ -257,10 +285,10 @@ URL suffix.</p>
 <dt id="shorturl.validations.EncodeInputSchema">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">shorturl.validations.</span></code><code class="sig-name descname"><span class="pre">EncodeInputSchema</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">many</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">load_only</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dump_only</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">partial</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">,</span> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unknown</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shorturl.validations.EncodeInputSchema" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">marshmallow.schema.Schema</span></code></p>
-<p>/encode - POST</p>
+<p>Validation schema for the /encode route</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>url</strong> (<em>-</em>) – </p>
+<dd class="field-odd"><p><strong>url</strong> – The original URL which needs to be encoded</p>
 </dd>
 </dl>
 <dl class="py attribute">
@@ -276,7 +304,20 @@ URL suffix.</p>
 <dl class="py function">
 <dt id="shorturl.create_app">
 <code class="sig-prename descclassname"><span class="pre">shorturl.</span></code><code class="sig-name descname"><span class="pre">create_app</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shorturl.create_app" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Flask app factory.
+Loads configs.
+Sets up logging.
+Defines routes.
+Initializes app.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>test_config</strong> – test config to be passed while running tests</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Flask app</p>
+</dd>
+</dl>
+</dd></dl>
 
 </section>
 </section>

@@ -8,6 +8,13 @@ from sqlalchemy.orm import sessionmaker
 
 
 def get_db():
+    """
+    Creates an SQLite connection, and stores it for
+    later reuse.
+
+    Returns:
+        sqlite3.connect object
+    """
     if 'db' not in g:
         g.db = sqlite3.connect(
             current_app.config['DATABASE'],
@@ -19,6 +26,14 @@ def get_db():
 
 
 def close_db(e=None):
+    """
+    Closes the sqlite3.connect object and removes it from the 
+    g special object.
+
+    Args:
+        e: error object to pass errors if required
+
+    """
     db = g.pop('db', None)
 
     if db is not None:
@@ -26,6 +41,10 @@ def close_db(e=None):
 
 
 def init_db():
+    """
+    Initializes the SQLite database, clears exising data and
+    migrates tables for first time use. Reads from `schema.sql`.
+    """
     db = get_db()
 
     with current_app.open_resource('schema.sql') as f:
@@ -35,19 +54,30 @@ def init_db():
 @click.command('init-db')
 @with_appcontext
 def init_db_command():
-    """Clear the existing data and create new tables."""
+    """
+    CLI wrapper over `init_db`.
+    """
     init_db()
     click.echo('Initialized the database.')
 
 
 def init_app(app):
+    """
+    Calls `close_db` when cleaning up after returning the response.
+    Adds the `init-db` command to be called with `flask init-db`.
+    """
     app.teardown_appcontext(close_db)
     app.cli.add_command(init_db_command)
 
 
 def get_db_session():
+    """
+    Creates a SQLite db_session to be used with SQLAlchemy models
+
+    Returns:
+        SQLAlchemy session
+    """
     db_engine = create_engine(
         f'sqlite:///{current_app.config["DATABASE"]}',
-        # echo=True,
     )
     return sessionmaker(bind=db_engine, autocommit=False)()

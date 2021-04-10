@@ -46,9 +46,17 @@ Navigate to http://localhost:5000/apidocs.
 
 ## Build and view API docs
 
+```bash
+$ cd docs
+$ sphinx-apidoc --force -o . ..
+$ make html
+```
+
+Use a web browser to open `_build/html/index.html`
+
 ## Run tests
 ```bash
-pytest
+$ pytest
 ```
 ## Troubleshooting tips
 
@@ -60,8 +68,10 @@ sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in
 
 ## TODO
 
-- installation instructions
-- api tests with response code
+- api tests with GIVEN text
 - response structure
-- error handling
 - add requirements.txt
+- pylint
+- logging to file
+- notes.txt
+- move routes to different file

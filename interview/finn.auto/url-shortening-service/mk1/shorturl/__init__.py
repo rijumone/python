@@ -10,6 +10,19 @@ from shorturl.validations import (EncodeInputSchema,
 
 
 def create_app(test_config=None):
+    """
+    Flask app factory.
+    Loads configs.
+    Sets up logging.
+    Defines routes.
+    Initializes app.
+
+    Args:
+        test_config: test config to be passed while running tests
+
+    Returns:
+        Flask app
+    """
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
     swagger = Swagger(app)

@@ -7,6 +7,9 @@ metadata = Base.metadata
 
 
 class URLsMap(Base):
+    """
+    SQLAlchemy model for the `urls_map` table.
+    """
     __tablename__ = 'urls_map'
 
     id = Column(Integer, primary_key=True)

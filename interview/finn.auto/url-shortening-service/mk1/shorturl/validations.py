@@ -2,10 +2,11 @@ from marshmallow import Schema, fields
 
 
 class EncodeInputSchema(Schema):
-    """ /encode - POST
+    """
+    Validation schema for the /encode route
 
-    Parameters:
-     - url (str)
+    Args:
+        url: The original URL which needs to be encoded
 
     """
 
@@ -13,10 +14,11 @@ class EncodeInputSchema(Schema):
 
 
 class DecodeInputSchema(Schema):
-    """ /decode - POST
+    """
+    Validation schema for the /decode route
 
-    Parameters:
-     - short_url (str)
+    Args:
+        short_url: The short URL whose original URL needs to be looked up
 
     """
 
