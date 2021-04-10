@@ -2,7 +2,7 @@ from conftest import client
 
 
 def make_request(client):
-    return client.get(
+    return client.post(
         '/encode', json={'url': 'https://codesubmit.io/library/react'})
 
 
@@ -41,8 +41,11 @@ def test_response_success(client):
     assert json_data['message'] == 'success'
 
 
+def test_other_request_verbs_failing(client):
+    assert False
+
 # def test_invalid_request(client):
-#     response = client.get('/encode', json={})
+#     response = client.post('/encode', json={})
 #     json_data = response.get_json()
 #     assert 'error' in json_data
 

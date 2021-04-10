@@ -1,3 +1,0 @@
-url_prefix: 'https://short.est/'
-database:
-  path: '/tmp/shortest_url.db'

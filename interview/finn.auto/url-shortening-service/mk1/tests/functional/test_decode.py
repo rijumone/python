@@ -2,12 +2,12 @@ from conftest import client
 
 
 def make_encode_request(client):
-    return client.get(
+    return client.post(
         '/encode', json={'url': 'https://codesubmit.io/library/react'})
 
 
 def make_decode_request(client, short_url):
-    return client.get(
+    return client.post(
         '/decode', json={'short_url': short_url})
 
 
@@ -62,13 +62,17 @@ def test_decode_functionality(client):
 
 
 def test_invalid_request(client):
-    response = client.get('/decode', json={})
+    response = client.post('/decode', json={})
     json_data = response.get_json()
     assert 'error' in json_data
 
 
 def test_non_existent_url(client):
     # add functionality to add 404 code
-    response = client.get('/decode', json={'short_url': 'foobarqux'})
+    response = client.post('/decode', json={'short_url': 'foobarqux'})
     json_data = response.get_json()
     assert 'error' in json_data
+
+
+def test_other_request_verbs_failing(client):
+    assert False

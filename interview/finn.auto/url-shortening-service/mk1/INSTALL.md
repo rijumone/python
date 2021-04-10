@@ -19,43 +19,35 @@ $ pip install -r requirements.txt
 $ python setup.py develop
 ```
 
-3. Create the config.yml file. A sample with smart defaults is provided which can be copied from. Any changes required to the config will have to be made in the `config.yml` file. Note that if the filename of the sqlite database is changed, the same will need to be used in the following step.
+3. Create the `instance/config.json` file. A sample with smart defaults is provided which can be copied from.
 
 ```bash
-cp config.yml.sample config.yml
-```
-
-## Setting up the database
-
-```bash
-$ sqlite3 /tmp/shortest_url.db
-```
-
-```bash
-sqlite> CREATE TABLE IF NOT EXISTS urls_map (
-	id INTEGER PRIMARY KEY,
-   	short_url TEXT DEFAULT NULL,
-	full_url TEXT DEFAULT NULL,
-    created_at DATETIME DEFAULT (datetime('now', 'utc'))
-);
+cp instance/config.json.sample instance/config.json
 ```
 ## Run the server locally
 
 ```bash
 $ export FLASK_APP=app.py
+$ export FLASK_ENV=development
 $ flask run
 ```
 ## Build and view API docs
 
 ## Run tests
-
+```bash
+pytest
+```
 ## Troubleshooting tips
 
 ## Known issues
+- An `sqlite3.ProgrammingError` exception is thrown while exiting the server. 
+```
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread.
+```
 
 ## TODO
 
 - installation instructions
-- api tests
+- api tests with response code
 - response structure
 - error handling
