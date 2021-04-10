@@ -42,11 +42,15 @@ def test_response_success(client):
 
 
 def test_other_request_verbs_failing(client):
-    assert False
+    response = client.get('/encode', json={})
+    assert response.status_code == 405
 
-# def test_invalid_request(client):
-#     response = client.post('/encode', json={})
-#     json_data = response.get_json()
-#     assert 'error' in json_data
+
+def test_invalid_request(client):
+    response = client.post(
+        '/encode', json={'url1': 'https://codesubmit.io/library/react'})
+    json_data = response.get_json()
+    assert 'errors' in json_data
+    assert response.status_code == 400
 
 # test_json_return(client)

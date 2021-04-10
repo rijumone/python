@@ -2,36 +2,18 @@ import os
 
 from loguru import logger
 from flask import Flask, request, abort
-from flask_swagger_ui import get_swaggerui_blueprint
-from werkzeug.exceptions import BadRequest
+from flasgger import Swagger
 from shorturl.url_transform import URLTransform
+from shorturl.exceptions import ShortURL404
 from shorturl.validations import (EncodeInputSchema,
                                   DecodeInputSchema)
-
-
-def setup_swagger_ui():
-    # URL for exposing Swagger UI (without trailing '/')
-    SWAGGER_URL = '/api/docs'
-
-    # Our API url (can of course be a local resource)
-    API_URL = 'http://petstore.swagger.io/v2/swagger.json'
-
-    # Call factory function to create our blueprint
-    swaggerui_blueprint = get_swaggerui_blueprint(
-        # Swagger UI static files will be mapped to '{SWAGGER_URL}/dist/'
-        SWAGGER_URL,
-        API_URL,
-        config={  # Swagger UI config overrides
-            'app_name': "Test application"
-        },
-    )
-
-    return swaggerui_blueprint
 
 
 def create_app(test_config=None):
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
+    swagger = Swagger(app)
+
     app.config.from_mapping(
         DATABASE=os.path.join(app.instance_path, 'shortenurl.sqlite'),
     )
@@ -51,6 +33,51 @@ def create_app(test_config=None):
 
     @app.route('/encode', methods=['POST'])
     def encode():
+        """Encodes a URL to shortened URL.
+        Returns a short URL
+        ---
+        consumes:
+          - application/json
+        produces:
+          - application/json
+        parameters:
+          - name: url
+            in: body
+            required: true
+            description: The URL to shorten.
+            schema:
+              type: object
+              required:
+                - url
+              properties:
+                url:
+                  type: string
+        definitions:
+          ShortURLSuccess:
+            type: object
+            properties:
+              data:
+                type: string
+              message:
+                type: string
+          ShortURLFailure:
+            type: object
+            properties:
+              message:
+                type: string
+              errors:
+                type: string
+        responses:
+          200:
+            description: A JSON object containing the shortened URL.
+            schema:
+              $ref: '#/definitions/ShortURLSuccess'
+          400:
+            description: A JSON object containing validation errors.
+            schema:
+              $ref: '#/definitions/ShortURLFailure'
+
+        """
 
         request_json = request.get_json()
         validation_schema = EncodeInputSchema()
@@ -62,10 +89,10 @@ def create_app(test_config=None):
             }, 400
 
         logger.debug(request_json)
-        full_url = request_json['url']
+        original_url = request_json['url']
         url_transform = URLTransform()
         short_url_suffix = url_transform.encode(
-            full_url=full_url)
+            original_url=original_url)
 
         return {
             'message': 'success',
@@ -74,6 +101,55 @@ def create_app(test_config=None):
 
     @app.route('/decode', methods=['POST'])
     def decode():
+        """Decodes a short URL to the original URL.
+        Returns the original URL.
+        ---
+        consumes:
+          - application/json
+        produces:
+          - application/json
+        parameters:
+          - name: short_url
+            in: body
+            required: true
+            description: The short URL to decode.
+            schema:
+              type: object
+              required:
+                - short_url
+              properties:
+                short_url:
+                  type: string
+        definitions:
+          URLSuccess:
+            type: object
+            properties:
+              data:
+                type: string
+              message:
+                type: string
+          URLFailure:
+            type: object
+            properties:
+              message:
+                type: string
+              errors:
+                type: string
+        responses:
+          200:
+            description: A JSON object containing the shortened URL.
+            schema:
+              $ref: '#/definitions/URLSuccess'
+          400:
+            description: A JSON object containing validation errors.
+            schema:
+              $ref: '#/definitions/URLFailure'
+          404:
+            description: A JSON object containing decoding errors.
+            schema:
+              $ref: '#/definitions/URLFailure'
+
+        """
         request_json = request.get_json()
         validation_schema = DecodeInputSchema()
         errors = validation_schema.validate(request_json)
@@ -88,18 +164,20 @@ def create_app(test_config=None):
         short_url_suffix = short_url.replace(f'{app.config["URL_PREFIX"]}', '')
 
         url_transform = URLTransform()
-        full_url = url_transform.decode(short_url_suffix)
+        try:
+            original_url = url_transform.decode(short_url_suffix)
+        except ShortURL404 as exc404:
+            return {
+                'message': 'failure',
+                'errors': f'{exc404}'.format(short_url=short_url)
+            }, 404
 
         return {
             'message': 'success',
-            'data': f'{full_url}'
+            'data': f'{original_url}'
         }, 200
 
     from . import db
     db.init_app(app)
-
-    swaggerui_blueprint = setup_swagger_ui()
-
-    app.register_blueprint(swaggerui_blueprint)
 
     return app

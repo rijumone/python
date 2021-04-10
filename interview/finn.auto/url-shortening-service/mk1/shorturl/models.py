@@ -11,13 +11,13 @@ class URLsMap(Base):
 
     id = Column(Integer, primary_key=True)
     short_url = Column(Text, nullable=True)
-    full_url = Column(Text, nullable=False)
+    original_url = Column(Text, nullable=False)
     created_at = Column(DateTime, default=datetime.datetime.utcnow)
 
     def __repr__(self) -> str:
         return f'''<URLsMap( 
             id={self.id},
             short_url={self.short_url},
-            full_url={self.full_url},
+            original_url={self.original_url},
             created_at={self.created_at},
         ) >'''

@@ -64,15 +64,16 @@ def test_decode_functionality(client):
 def test_invalid_request(client):
     response = client.post('/decode', json={})
     json_data = response.get_json()
-    assert 'error' in json_data
+    assert 'errors' in json_data
 
 
 def test_non_existent_url(client):
     # add functionality to add 404 code
     response = client.post('/decode', json={'short_url': 'foobarqux'})
     json_data = response.get_json()
-    assert 'error' in json_data
+    assert 'errors' in json_data
 
 
 def test_other_request_verbs_failing(client):
-    assert False
+    response = client.get('/decode', json={})
+    assert response.status_code == 405
