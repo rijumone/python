@@ -23,7 +23,7 @@ $ python setup.py develop
 3. Create the `instance/config.json` file. A sample with smart defaults is provided which can be copied from.
 
 ```bash
-cp instance/config.json.sample instance/config.json
+cp config.json.sample instance/config.json
 ```
 
 ## Initialize the database
@@ -58,20 +58,37 @@ Use a web browser to open `_build/html/index.html`
 ```bash
 $ pytest
 ```
-## Troubleshooting tips
+## Via cURL
+
+While SwaggerUI is perfectly capable when it comes to evaluating the service, cURL commands can also be used.
+
+### sample `/encode`
+```bash
+$ curl --location --request POST 'localhost:5000/encode' \
+--header 'Content-Type: application/json' \
+--data-raw '{"url": "https://codesubmit.io/library/react"}'
+```
+
+### sample `/decode`
+```bash
+$ curl --location --request POST 'localhost:5000/decode' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "short_url": "https://short.est/867nv"
+}'
+```
 
 ## Known issues
 - An `sqlite3.ProgrammingError` exception is thrown while exiting the server. 
 ```
 sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread.
 ```
+- Warning generated with pytest.
 
 ## TODO
-
-- api tests with GIVEN text
-- response structure
-- add requirements.txt
 - pylint
 - logging to file
+- api tests with GIVEN text
 - notes.txt
-- move routes to different file
+- response structure (create class)
+- move routes to different file (Blueprint)
