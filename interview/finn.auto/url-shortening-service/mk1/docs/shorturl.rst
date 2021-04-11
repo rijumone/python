@@ -4,6 +4,14 @@ shorturl package
 Submodules
 ----------
 
+shorturl.blueprints module
+--------------------------
+
+.. automodule:: shorturl.blueprints
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 shorturl.db module
 ------------------
 

@@ -37,8 +37,195 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </section>
+<section id="module-shorturl.blueprints">
+<span id="shorturl-blueprints-module"></span><h2>shorturl.blueprints module<a class="headerlink" href="#module-shorturl.blueprints" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="shorturl.blueprints.decode">
+<code class="sig-prename descclassname"><span class="pre">shorturl.blueprints.</span></code><code class="sig-name descname"><span class="pre">decode</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#shorturl.blueprints.decode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decodes a short URL to the original URL.
+Returns the original URL.
+—
+consumes:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>application/json</p></li>
+</ul>
+</div></blockquote>
+<dl class="simple">
+<dt>produces:</dt><dd><ul class="simple">
+<li><p>application/json</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>-</em>) – <p>short_url
+in: body
+required: true
+description: The short URL to decode.
+schema:</p>
+<blockquote>
+<div><p>type: object
+required:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>short_url</p></li>
+</ul>
+</div></blockquote>
+<dl class="simple">
+<dt>properties:</dt><dd><dl class="simple">
+<dt>short_url:</dt><dd><p>type: string</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</div></blockquote>
+</p>
+</dd>
+</dl>
+<dl>
+<dt>definitions:</dt><dd><dl>
+<dt>URLSuccess:</dt><dd><p>type: object
+properties:</p>
+<blockquote>
+<div><dl class="simple">
+<dt>data:</dt><dd><p>type: string</p>
+</dd>
+<dt>message:</dt><dd><p>type: string</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd>
+<dt>URLFailure:</dt><dd><p>type: object
+properties:</p>
+<blockquote>
+<div><dl class="simple">
+<dt>message:</dt><dd><p>type: string</p>
+</dd>
+<dt>errors:</dt><dd><p>type: string</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd>
+</dl>
+</dd>
+<dt>responses:</dt><dd><dl>
+<dt>200:</dt><dd><p>description: A JSON object containing the shortened URL.
+schema:</p>
+<blockquote>
+<div><p>$ref: ‘#/definitions/URLSuccess’</p>
+</div></blockquote>
+</dd>
+<dt>400:</dt><dd><p>description: A JSON object containing validation errors.
+schema:</p>
+<blockquote>
+<div><p>$ref: ‘#/definitions/URLFailure’</p>
+</div></blockquote>
+</dd>
+<dt>404:</dt><dd><p>description: A JSON object containing decoding errors.
+schema:</p>
+<blockquote>
+<div><p>$ref: ‘#/definitions/URLFailure’</p>
+</div></blockquote>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="shorturl.blueprints.encode">
+<code class="sig-prename descclassname"><span class="pre">shorturl.blueprints.</span></code><code class="sig-name descname"><span class="pre">encode</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#shorturl.blueprints.encode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Encodes a URL to shortened URL.
+Returns a short URL
+—
+consumes:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>application/json</p></li>
+</ul>
+</div></blockquote>
+<dl class="simple">
+<dt>produces:</dt><dd><ul class="simple">
+<li><p>application/json</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>-</em>) – <p>url
+in: body
+required: true
+description: The URL to shorten.
+schema:</p>
+<blockquote>
+<div><p>type: object
+required:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>url</p></li>
+</ul>
+</div></blockquote>
+<dl class="simple">
+<dt>properties:</dt><dd><dl class="simple">
+<dt>url:</dt><dd><p>type: string</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</div></blockquote>
+</p>
+</dd>
+</dl>
+<dl>
+<dt>definitions:</dt><dd><dl>
+<dt>ShortURLSuccess:</dt><dd><p>type: object
+properties:</p>
+<blockquote>
+<div><dl class="simple">
+<dt>data:</dt><dd><p>type: string</p>
+</dd>
+<dt>message:</dt><dd><p>type: string</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd>
+<dt>ShortURLFailure:</dt><dd><p>type: object
+properties:</p>
+<blockquote>
+<div><dl class="simple">
+<dt>message:</dt><dd><p>type: string</p>
+</dd>
+<dt>errors:</dt><dd><p>type: string</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd>
+</dl>
+</dd>
+<dt>responses:</dt><dd><dl>
+<dt>200:</dt><dd><p>description: A JSON object containing the shortened URL.
+schema:</p>
+<blockquote>
+<div><p>$ref: ‘#/definitions/ShortURLSuccess’</p>
+</div></blockquote>
+</dd>
+<dt>400:</dt><dd><p>description: A JSON object containing validation errors.
+schema:</p>
+<blockquote>
+<div><p>$ref: ‘#/definitions/ShortURLFailure’</p>
+</div></blockquote>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
 <section id="module-shorturl.db">
 <span id="shorturl-db-module"></span><h2>shorturl.db module<a class="headerlink" href="#module-shorturl.db" title="Permalink to this headline">¶</a></h2>
+<p>Module responsible for initializing the database
+and provide a database session for SQLAlchemy operations</p>
 <dl class="py function">
 <dt id="shorturl.db.close_db">
 <code class="sig-prename descclassname"><span class="pre">shorturl.db.</span></code><code class="sig-name descname"><span class="pre">close_db</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">e</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shorturl.db.close_db" title="Permalink to this definition">¶</a></dt>
@@ -91,9 +278,11 @@ migrates tables for first time use. Reads from <cite>schema.sql</cite>.</p>
 </section>
 <section id="module-shorturl.exceptions">
 <span id="shorturl-exceptions-module"></span><h2>shorturl.exceptions module<a class="headerlink" href="#module-shorturl.exceptions" title="Permalink to this headline">¶</a></h2>
+<p>Module to hold Exception classes
+for the shorturl package.</p>
 <dl class="py exception">
 <dt id="shorturl.exceptions.ShortURL404">
-<em class="property"><span class="pre">exception</span> </em><code class="sig-prename descclassname"><span class="pre">shorturl.exceptions.</span></code><code class="sig-name descname"><span class="pre">ShortURL404</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shorturl.exceptions.ShortURL404" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">exception</span> </em><code class="sig-prename descclassname"><span class="pre">shorturl.exceptions.</span></code><code class="sig-name descname"><span class="pre">ShortURL404</span></code><a class="headerlink" href="#shorturl.exceptions.ShortURL404" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
 <p>Exception class for errors where the short_url
 either does not exist on the database or is not a
@@ -103,6 +292,8 @@ valid hash</p>
 </section>
 <section id="module-shorturl.models">
 <span id="shorturl-models-module"></span><h2>shorturl.models module<a class="headerlink" href="#module-shorturl.models" title="Permalink to this headline">¶</a></h2>
+<p>Module to contain database models for the
+shorturl package.</p>
 <dl class="py class">
 <dt id="shorturl.models.URLsMap">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">shorturl.models.</span></code><code class="sig-name descname"><span class="pre">URLsMap</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shorturl.models.URLsMap" title="Permalink to this definition">¶</a></dt>
@@ -133,6 +324,9 @@ valid hash</p>
 </section>
 <section id="module-shorturl.url_transform">
 <span id="shorturl-url-transform-module"></span><h2>shorturl.url_transform module<a class="headerlink" href="#module-shorturl.url_transform" title="Permalink to this headline">¶</a></h2>
+<p>Module to encode and decode URLs to short URLs
+and vice versa and functionality for database
+persistence.</p>
 <dl class="py class">
 <dt id="shorturl.url_transform.FullURL">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">shorturl.url_transform.</span></code><code class="sig-name descname"><span class="pre">FullURL</span></code><a class="headerlink" href="#shorturl.url_transform.FullURL" title="Permalink to this definition">¶</a></dt>
@@ -214,6 +408,11 @@ from the database.</p>
 <dd><p>Updates the database row with the generated hash.</p>
 </dd></dl>
 
+<dl class="py attribute">
+<dt id="shorturl.url_transform.URLTransform.db_url">
+<code class="sig-name descname"><span class="pre">db_url</span></code><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#shorturl.url_transform.URLTransform.db_url" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="py method">
 <dt id="shorturl.url_transform.URLTransform.decode">
 <code class="sig-name descname"><span class="pre">decode</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">short_url_suffix</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shorturl.url_transform.URLTransform.decode" title="Permalink to this definition">¶</a></dt>
@@ -259,11 +458,18 @@ URL suffix.</p>
 <code class="sig-name descname"><span class="pre">original_url</span></code><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#shorturl.url_transform.URLTransform.original_url" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt id="shorturl.url_transform.URLTransform.short_url_suffix">
+<code class="sig-name descname"><span class="pre">short_url_suffix</span></code><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#shorturl.url_transform.URLTransform.short_url_suffix" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 </section>
 <section id="module-shorturl.validations">
 <span id="shorturl-validations-module"></span><h2>shorturl.validations module<a class="headerlink" href="#module-shorturl.validations" title="Permalink to this headline">¶</a></h2>
+<p>Marshmallow Schemas to be used for input
+validation for routes in the shorturl package.</p>
 <dl class="py class">
 <dt id="shorturl.validations.DecodeInputSchema">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">shorturl.validations.</span></code><code class="sig-name descname"><span class="pre">DecodeInputSchema</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">many</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">load_only</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dump_only</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">partial</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">,</span> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">Set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unknown</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shorturl.validations.DecodeInputSchema" title="Permalink to this definition">¶</a></dt>
@@ -301,6 +507,8 @@ URL suffix.</p>
 </section>
 <section id="module-shorturl">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-shorturl" title="Permalink to this headline">¶</a></h2>
+<p>Bootstrap the Flask application,
+Works as factory and provides instance of app.</p>
 <dl class="py function">
 <dt id="shorturl.create_app">
 <code class="sig-prename descclassname"><span class="pre">shorturl.</span></code><code class="sig-name descname"><span class="pre">create_app</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#shorturl.create_app" title="Permalink to this definition">¶</a></dt>
