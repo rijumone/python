@@ -1,3 +1,8 @@
+"""
+Marshmallow Schemas to be used for input
+validation for routes in the shorturl package.
+"""
+
 from marshmallow import Schema, fields
 
 

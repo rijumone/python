@@ -1,8 +1,12 @@
-# from dataclasses import dataclass
+
+"""
+Module to encode and decode URLs to short URLs
+and vice versa and functionality for database
+persistence.
+"""
 import short_url
 from loguru import logger
 
-# from shorturl.database import DatabaseConnection
 from shorturl.models import URLsMap
 from shorturl.db import get_db_session
 from shorturl.exceptions import ShortURL404
@@ -14,6 +18,8 @@ class ShortURL:
     an unique integer using the short_url PyPI package
     (https://pypi.org/project/short_url/).
     """
+
+    # pylint: disable=too-few-public-methods
     @staticmethod
     def encode(unique_key):
         """
@@ -39,6 +45,8 @@ class FullURL:
     the unique hash was generated using the short_url PyPI package
     (https://pypi.org/project/short_url/).
     """
+
+    # pylint: disable=too-few-public-methods
     @staticmethod
     def decode(shorturl):
         """
@@ -65,7 +73,9 @@ class URLTransform:
     and inserting, updating and retrieving the short_urls and full_urls
     from the database.
     """
+    db_url = None
     original_url = None
+    short_url_suffix = None
 
     def __init__(self) -> None:
         self.db_session = get_db_session()
@@ -147,6 +157,7 @@ class URLTransform:
         except ValueError:
             logger.error(
                 f'Unable to decode short_url: {self.short_url_suffix}.')
+            # pylint: disable=raise-missing-from
             raise ShortURL404('Unable to decode short_url: {short_url}')
 
         # fetch the db_url object from db
@@ -154,18 +165,10 @@ class URLTransform:
         if not self.db_url:
             logger.error(
                 f'short_url: {self.short_url_suffix} does not exist.')
+            # pylint: disable=raise-missing-from
             raise ShortURL404('{short_url} does not exist')
 
         # logger.debug(self.db_url)
         logger.debug(self.db_url.original_url)
 
         return self.db_url.original_url
-
-
-if __name__ == '__main__':
-
-    url_transform = URLTransform()
-    short_url_suffix = url_transform.encode(
-        original_url='https://codesubmit.io/library/react')
-
-    url_transform.decode(short_url_suffix)

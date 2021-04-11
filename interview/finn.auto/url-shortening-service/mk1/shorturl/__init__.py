@@ -1,13 +1,13 @@
-import os
+"""
+Bootstrap the Flask application,
+Works as factory and provides instance of app.
+"""
 
-from loguru import logger
-from flask import Flask, request
+import os
+from flask import Flask
 from flasgger import Swagger
-from shorturl.url_transform import URLTransform
-from shorturl.exceptions import ShortURL404
 from shorturl.blueprints import shorturl_bp
-from shorturl.validations import (EncodeInputSchema,
-                                  DecodeInputSchema)
+from . import db
 
 
 def create_app(test_config=None):
@@ -26,7 +26,6 @@ def create_app(test_config=None):
     """
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
-    swagger = Swagger(app)
 
     app.config.from_mapping(
         DATABASE=os.path.join(app.instance_path, 'shortenurl.sqlite'),
@@ -45,7 +44,6 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    from . import db
     db.init_app(app)
 
     app.register_blueprint(shorturl_bp)

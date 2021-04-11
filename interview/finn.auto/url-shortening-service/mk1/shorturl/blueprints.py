@@ -1,3 +1,8 @@
+"""
+Module to contain Blueprints
+for the shorturl routes
+"""
+
 from loguru import logger
 from flask import Blueprint, request, current_app
 

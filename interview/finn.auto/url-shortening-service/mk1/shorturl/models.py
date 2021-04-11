@@ -1,3 +1,9 @@
+"""
+Module to contain database models for the
+shorturl package.
+"""
+
+# pylint: disable=too-few-public-methods
 import datetime
 from sqlalchemy import Column, Integer, Text, DateTime
 from sqlalchemy.ext.declarative import declarative_base
@@ -18,7 +24,7 @@ class URLsMap(Base):
     created_at = Column(DateTime, default=datetime.datetime.utcnow)
 
     def __repr__(self) -> str:
-        return f'''<URLsMap( 
+        return f'''<URLsMap(
             id={self.id},
             short_url={self.short_url},
             original_url={self.original_url},

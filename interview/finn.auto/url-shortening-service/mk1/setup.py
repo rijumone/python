@@ -1,3 +1,5 @@
+""" Module to install shorturl as a module """
+
 import os
 from setuptools import setup, find_packages
 

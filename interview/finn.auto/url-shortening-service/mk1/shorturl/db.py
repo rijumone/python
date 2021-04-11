@@ -1,5 +1,10 @@
-import sqlite3
+"""
+Module responsible for initializing the database
+and provide a database session for SQLAlchemy operations
+"""
+# pylint: disable=invalid-name
 
+import sqlite3
 import click
 from flask import current_app, g
 from flask.cli import with_appcontext
@@ -26,8 +31,9 @@ def get_db():
 
 
 def close_db(e=None):
+    # pylint: disable=unused-argument
     """
-    Closes the sqlite3.connect object and removes it from the 
+    Closes the sqlite3.connect object and removes it from the
     g special object.
 
     Args:
