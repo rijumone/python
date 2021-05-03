@@ -48,6 +48,14 @@ def process_letters(letter):
 def run_task(tasks_list, func):
     with concurrent.futures.ProcessPoolExecutor() as executor:
     # with concurrent.futures.ThreadPoolExecutor() as executor:
+        # for task in tasks_list:
+        #     f1 = executor.submit(func, task)
+            # the submit method schedules a function be executed
+            # and returns a futures object
+            # a futures object encapsulates the execution of function
+            # allows checking in on it after its been scheduled
+            # can check status (running, completed) and result
+        #       result = f1.result()
         results = executor.map(func, tasks_list)
 
         for result in results:
