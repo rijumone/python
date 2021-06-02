@@ -50,6 +50,6 @@ sphinxcontrib-qthelp==1.0.3
 sphinxcontrib-serializinghtml==1.1.4
 SQLAlchemy==1.4.7
 toml==0.10.2
-urllib3==1.26.4
+urllib3==1.26.5
 Werkzeug==1.0.1
 wrapt==1.12.1
