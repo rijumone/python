@@ -49,9 +49,7 @@ def main():
 
         restaurant['call'] = call_txt
 
-        meta_tag_lst = list(card.select('div.content > div > article > div.search-page-text.clearfix.row'))
-        
-        for meta_tag in meta_tag_lst:
+        for meta_tag in card.select('div.content > div > article > div.search-page-text.clearfix.row'):
 
 
 
